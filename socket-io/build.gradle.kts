@@ -8,6 +8,7 @@ plugins {
     plugin(Deps.Plugins.kotlinAndroidExtensions)
     plugin(Deps.Plugins.mobileMultiplatform)
     plugin(Deps.Plugins.mavenPublish)
+    id("org.jetbrains.kotlin.plugin.serialization") version (Deps.kotlinVersion)
 }
 
 group = "com.rsteam"
@@ -16,7 +17,8 @@ version = Deps.mokoSocketIoVersion
 
 
 dependencies {
-    commonMainImplementation(Deps.Libs.MultiPlatform.serialization)
+//    commonMainImplementation(Deps.Libs.MultiPlatform.serialization)
+    commonMainImplementation(Deps.Libs.MultiPlatform.serializationJson)
 
     androidMainImplementation(Deps.Libs.Android.appCompat)
    /* androidMainImplementation(Deps.Libs.Android.socketIo) {
@@ -33,9 +35,9 @@ kotlin {
         val jvmCommonMain by creating {
             dependsOn(getByName("commonMain"))
             dependencies {
-                implementation(Deps.Libs.Android.socketIo) /*{
+                implementation(Deps.Libs.Android.socketIo) {
                     exclude(group = "org.json", module = "json")
-                }*/
+                }
             }
         }
 
